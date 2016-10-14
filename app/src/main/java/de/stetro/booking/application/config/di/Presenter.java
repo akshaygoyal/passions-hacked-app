@@ -1,4 +1,4 @@
-package de.stetro.booking.application.config.di.util;
+package de.stetro.booking.application.config.di;
 
 
 public interface Presenter<T> {

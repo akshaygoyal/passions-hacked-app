@@ -8,7 +8,9 @@ import de.stetro.booking.application.ui.main.MainView;
 
 @Component(modules = PresenterModule.class)
 public interface ApplicationComponent {
-    MainActivity inject(MainActivity mainActivity);
+
+    MainView inject(MainView mainView);
+
     MainPresenter inject(MainPresenter mainPresenter);
 
     MainPresenter getMainPresenter();

@@ -1,10 +1,8 @@
 package de.stetro.booking.application.ui.main;
 
 
-import javax.inject.Inject;
-
 import de.stetro.booking.application.service.HelloWorldService;
-import de.stetro.booking.application.config.di.util.Presenter;
+import de.stetro.booking.application.config.di.Presenter;
 
 public class MainPresenter implements Presenter<MainView> {
 
