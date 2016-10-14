@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 TextView textView = (TextView) findViewById(R.id.seek_bar_progress);
                 int budget = (int) Math.floor((0.0099 * progress * progress * progress) + 100);
-                textView.setText(String.valueOf(budget) + "EUR");
+                textView.setText(String.valueOf(budget) + " \u20ac");
             }
 
             @Override

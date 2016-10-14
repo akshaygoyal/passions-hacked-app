@@ -13,16 +13,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/travel_period"
-            android:textSize="50px"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textSize="25sp" />
 
         <Button
             android:id="@+id/date_range_button"
@@ -32,71 +32,84 @@
             android:drawableLeft="@mipmap/ic_date_range_primary_color_18dp"
             android:layout_marginTop="15dp"
             android:drawablePadding="10dp"
-            />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="35dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_marginTop="35dp"
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:text="Budget per day:"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="#04317a"
-            android:textSize="50px"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+            android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginTop="15dp"
+            android:orientation="horizontal"
             android:weightSum="1">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="100 EUR"
-                android:textSize="25px"
                 android:layout_weight=".5"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+                android:text="100 €"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
-                android:text="10000 EUR"
                 android:layout_weight=".5"
-                android:textSize="25px"
+                android:text="10000 €"
                 android:textAlignment="textEnd"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:id="@+id/textView3"/>
+                android:textSize="15sp" />
 
         </LinearLayout>
 
         <SeekBar
-            android:layout_marginTop="5dp"
+            android:id="@+id/budget_seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="25dp"
-            android:id="@+id/budget_seek_bar" />
+            android:layout_marginTop="5dp" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="0 EUR"
-            android:id="@+id/seek_bar_progress">
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:weightSum="1">
 
-        </TextView>
-
+            <TextView
+                android:id="@+id/seek_bar_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_marginLeft="80dp"
+                android:gravity="center"
+                android:layout_weight=".7"
+                android:background="@drawable/circle"
+                android:text="@string/ZeroEuros"
+                android:textColor="@color/mdtp_white"
+                android:textSize="35sp">
+            </TextView>
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
