@@ -17,9 +17,16 @@ import de.stetro.booking.application.data.Hotel;
 public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
 
     private List<Hotel> hotels = new ArrayList<>();
+    private HotelPresenter presenter;
+    private HotelActivity hotelActivity;
 
     public HotelAdapter() {
 
+    }
+
+    public HotelAdapter(HotelPresenter hotelPresenter, HotelActivity hotelActivity) {
+        this.presenter = hotelPresenter;
+        this.hotelActivity = hotelActivity;
     }
 
     @Override
@@ -32,7 +39,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.setData(hotels.get(position));
+        holder.setData(hotels.get(position), position);
     }
 
     @Override
@@ -45,10 +52,15 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         this.hotels.addAll(hotels);
     }
 
+    public void setPresenter(HotelPresenter presenter) {
+        this.presenter = presenter;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.hotel_name)
         TextView hotelName;
+        private int position;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -56,12 +68,14 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
             itemView.setOnClickListener(this);
         }
 
-        public void setData(Hotel hotel) {
+        public void setData(Hotel hotel, int position) {
+            this.position = position;
             hotelName.setText(hotel.getName());
         }
 
         @Override
         public void onClick(View view) {
+            presenter.selectHotel(position);
 
         }
     }

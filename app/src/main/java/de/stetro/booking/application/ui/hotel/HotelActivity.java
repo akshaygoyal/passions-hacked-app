@@ -34,7 +34,7 @@ public class HotelActivity extends AppCompatActivity implements HotelView {
         setContentView(R.layout.activity_hotel);
         setTitle("Hotel Suggestions");
         ButterKnife.bind(this);
-        adapter = new HotelAdapter();
+        adapter = new HotelAdapter(hotelPresenter, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -42,7 +42,7 @@ public class HotelActivity extends AppCompatActivity implements HotelView {
     }
 
     @Override
-    public void setState(List<Hotel> hotels) {
+    public void setState(List<Hotel> hotels, Integer selectedHotel) {
         adapter.setHotels(hotels);
     }
 }
