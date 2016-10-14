@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
         ButterKnife.bind(this);
         presenter.setView(this);
     }
-    
+
 
     @OnClick(R.id.date_range_button)
     public void onDateRangeButtonClicked() {
