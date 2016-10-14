@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import de.stetro.booking.application.service.HelloWorldService;
+import de.stetro.booking.application.ui.hotel.HotelPresenter;
 import de.stetro.booking.application.ui.main.MainPresenter;
 import de.stetro.booking.application.ui.question.QuestionPresenter;
 
@@ -20,6 +21,11 @@ public class PresenterModule {
     @Provides
     static QuestionPresenter provideQuestionPresenter() {
         return new QuestionPresenter();
+    }
+
+    @Provides
+    static HotelPresenter provideHotelPresenter() {
+        return new HotelPresenter();
     }
 
     @Provides
