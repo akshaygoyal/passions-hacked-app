@@ -9,11 +9,8 @@ public class MainPresenter implements Presenter<MainView> {
 
     private MainView view;
     private Integer budget = 0;
-    private Date startDate = new Date();
-    private Date endDate = new Date();
-
-    public MainPresenter() {
-    }
+    private Date startDate;
+    private Date endDate;
 
     @Override
     public void setView(MainView view) {
@@ -25,12 +22,12 @@ public class MainPresenter implements Presenter<MainView> {
         view.setState(startDate, endDate, budget);
     }
 
-    public void setBudgetProgressValue(int progress) {
+    void setBudgetProgressValue(int progress) {
         budget = (int) Math.pow(progress, 2) + 100;
         render();
     }
 
-    public void setDates(Date startDate, Date endDate){
+    void setDates(Date startDate, Date endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
         render();

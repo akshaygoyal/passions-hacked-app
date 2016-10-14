@@ -2,6 +2,7 @@ package de.stetro.booking.application.ui.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.widget.SeekBar;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
                 now.get(Calendar.MONTH),
                 now.get(Calendar.DAY_OF_MONTH)
         );
+        dpd.setAccentColor(ContextCompat.getColor(this, R.color.colorPrimary));
         dpd.show(getFragmentManager(), "Datepickerdialog");
     }
 
@@ -91,7 +93,9 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
 
     @Override
     public void setState(Date startDate, Date endDate, Integer budget) {
-        periodTextView.setText(SIMPLE_DATE_FORMAT.format(startDate) + " - " + SIMPLE_DATE_FORMAT.format(endDate));
-        budgetTextView.setText(budget + " €");
+        if (startDate != null && endDate != null) {
+            periodTextView.setText(SIMPLE_DATE_FORMAT.format(startDate) + " - " + SIMPLE_DATE_FORMAT.format(endDate));
+        }
+        budgetTextView.setText(String.format(Locale.UK, "%d €", budget));
     }
 }
