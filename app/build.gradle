@@ -54,25 +54,20 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.daprlabs.aaron:cardstack:0.3.1-beta0'
+    compile 'com.borax12.materialdaterangepicker:library:1.7'
+
 
 }
 
 
 mdicons {
-    defcolor 'primary_color', '#9804d9'
+    defcolor 'primary_color', '#003382'
 
     assets {
-        nav {
-            densities 'mdpi', 'xxxhdpi'
-            colors 'primary_color'
-            sizes '18dp', '36dp'
-            names 'camera', 'search'
-        }
-
-        toolbar {
+        icons {
             colors 'primary_color'
             sizes '18dp'
-            names 'home'
+            names 'date_range'
         }
     }
 
