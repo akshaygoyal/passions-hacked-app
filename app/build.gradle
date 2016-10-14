@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId 'de.stetro.booking.application'
-        minSdkVersion 24
+        minSdkVersion 22
         targetSdkVersion 24
         versionCode 1
         versionName '1.0'

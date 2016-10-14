@@ -31,6 +31,10 @@
             android:name=".ui.hotel.HotelActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:parentActivityName=".ui.hotel.HotelActivity"
+            android:name=".ui.hoteldetails.HotelDetailsActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

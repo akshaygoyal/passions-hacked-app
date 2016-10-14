@@ -12,8 +12,12 @@ import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.config.di.Presenter;
 import de.stetro.booking.application.data.Hotel;
 import de.stetro.booking.application.data.Hotels;
+
 import de.stetro.booking.application.service.Api;
 import de.stetro.booking.application.ui.question.QuestionPresenter;
+import de.stetro.booking.application.ui.hoteldetails.HotelDetailsActivity;
+import de.stetro.booking.application.ui.hoteldetails.HotelDetailsView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,6 +70,10 @@ public class HotelPresenter implements Presenter<HotelActivity> {
         this.view = view;
         loadHotels();
 
+    }
+
+    public Hotel getSelectedHotel(){
+        return hotels.get(selectedHotel);
     }
 
     private void render() {

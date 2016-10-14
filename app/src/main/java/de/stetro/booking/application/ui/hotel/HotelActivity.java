@@ -1,6 +1,7 @@
 package de.stetro.booking.application.ui.hotel;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import butterknife.ButterKnife;
 import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.R;
 import de.stetro.booking.application.data.Hotel;
+import de.stetro.booking.application.ui.hoteldetails.HotelDetailsActivity;
 
 public class HotelActivity extends AppCompatActivity implements HotelView {
 
@@ -72,5 +74,10 @@ public class HotelActivity extends AppCompatActivity implements HotelView {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showHotelDetailsView(){
+        Intent intent = new Intent(this, HotelDetailsActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,5 +1,6 @@
 package de.stetro.booking.application.ui.hotel;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.stetro.booking.application.R;
 import de.stetro.booking.application.data.Hotel;
+import de.stetro.booking.application.ui.hoteldetails.HotelDetailsActivity;
 
 class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
 
@@ -99,6 +101,7 @@ class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
         @Override
         public void onClick(View view) {
             presenter.selectHotel(position);
+            hotelActivity.showHotelDetailsView();
         }
     }
 }
