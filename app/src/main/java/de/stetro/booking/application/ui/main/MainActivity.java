@@ -1,15 +1,19 @@
 package de.stetro.booking.application.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
+import android.view.Menu;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.lang.Object;
+import java.util.Date;
+import java.util.Locale;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -17,14 +21,23 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.R;
+import de.stetro.booking.application.ui.question.QuestionActivity;
 
 public class MainActivity extends AppCompatActivity implements MainView, DatePickerDialog.OnDateSetListener {
+
+    public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy", Locale.UK);
 
     @Inject
     public MainPresenter presenter;
 
-    @BindView(R.id.budget_seek_bar)
+    @BindView(R.id.main_seek_bar)
     public SeekBar seekBar;
+
+    @BindView(R.id.main_period)
+    public TextView periodTextView;
+
+    @BindView(R.id.main_budget)
+    public TextView budgetTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,26 +46,14 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         presenter.setView(this);
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        setTitle("");
+        seekBar.setOnSeekBarChangeListener(new SeekbarAdapter() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                TextView textView = (TextView) findViewById(R.id.seek_bar_progress);
-                int budget = (int) Math.floor((0.0099 * progress * progress * progress) + 100);
-                textView.setText(String.valueOf(budget) + " \u20ac");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                //do nothing for now.
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                presenter.setBudgetProgressValue(progress);
             }
         });
     }
-
 
     @OnClick(R.id.date_range_button)
     public void onDateRangeButtonClicked() {
@@ -67,7 +68,30 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
     }
 
     @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add("About");
+        return super.onCreateOptionsMenu(menu);
+    }
 
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, monthOfYear, dayOfMonth);
+        Date startDate = calendar.getTime();
+        calendar.set(yearEnd, monthOfYearEnd, dayOfMonthEnd);
+        Date endDate = calendar.getTime();
+        presenter.setDates(startDate, endDate);
+    }
+
+    @OnClick(R.id.main_next_button)
+    public void nextStepsClicked() {
+        Intent intent = new Intent(this, QuestionActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void setState(Date startDate, Date endDate, Integer budget) {
+        periodTextView.setText(SIMPLE_DATE_FORMAT.format(startDate) + " - " + SIMPLE_DATE_FORMAT.format(endDate));
+        budgetTextView.setText(budget + " €");
     }
 }

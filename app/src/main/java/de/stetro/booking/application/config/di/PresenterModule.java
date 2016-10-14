@@ -15,7 +15,7 @@ public class PresenterModule {
 
     @Provides
     static MainPresenter provideMainPresenter(HelloWorldService helloWorldService) {
-        return new MainPresenter(helloWorldService);
+        return new MainPresenter();
     }
 
     @Provides
