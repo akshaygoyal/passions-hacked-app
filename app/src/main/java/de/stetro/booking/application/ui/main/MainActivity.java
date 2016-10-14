@@ -2,13 +2,17 @@ package de.stetro.booking.application.ui.main;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
-
+import java.lang.Object;
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.stetro.booking.application.MainApplication;
@@ -19,6 +23,9 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
     @Inject
     public MainPresenter presenter;
 
+    @BindView(R.id.budget_seek_bar)
+    public SeekBar seekBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +33,24 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         presenter.setView(this);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                TextView textView = (TextView) findViewById(R.id.seek_bar_progress);
+                int budget = (int) Math.floor((0.0099 * progress * progress * progress) + 100);
+                textView.setText(String.valueOf(budget) + "EUR");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //do nothing for now.
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
 
