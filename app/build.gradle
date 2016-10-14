@@ -55,6 +55,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.daprlabs.aaron:cardstack:0.3.1-beta0'
     compile 'com.borax12.materialdaterangepicker:library:1.7'
+    compile 'com.anton46:stepsview:0.0.2'
 
 
 }
@@ -62,6 +63,9 @@ dependencies {
 
 mdicons {
     defcolor 'primary_color', '#003382'
+    defcolor 'green', '#00EE00'
+    defcolor 'red', '#EE0000'
+    defcolor 'white', '#000000'
 
     assets {
         icons {
@@ -69,6 +73,25 @@ mdicons {
             sizes '18dp'
             names 'date_range'
         }
+
+        redIcons {
+            colors 'red'
+            sizes '24dp'
+            names 'arrow_back'
+        }
+
+        greenIcons {
+            colors 'green'
+            sizes '24dp'
+            names 'arrow_forward'
+        }
+
+        whiteIcons {
+            colors 'white'
+            sizes '24dp'
+            names 'skip_next'
+        }
+
     }
 
 }

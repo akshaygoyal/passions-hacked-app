@@ -3,4 +3,5 @@
     <string name="budget">Your Budget:</string>
     <string name="travel_period">Travel Period:</string>
     <string name="pick_travel_period">Pick the Dates</string>
+    <string name="questions">Questions</string>
 </resources>
