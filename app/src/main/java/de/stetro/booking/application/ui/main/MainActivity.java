@@ -23,13 +23,17 @@ import butterknife.OnClick;
 import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.R;
 import de.stetro.booking.application.ui.question.QuestionActivity;
+import de.stetro.booking.application.ui.question.QuestionPresenter;
 
 public class MainActivity extends AppCompatActivity implements MainView, DatePickerDialog.OnDateSetListener {
 
     public static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy", Locale.UK);
 
     @Inject
-    public MainPresenter presenter;
+    public MainPresenter mainPresenter;
+
+    @Inject
+    public QuestionPresenter questionPresenter;
 
     @BindView(R.id.main_seek_bar)
     public SeekBar seekBar;
@@ -46,12 +50,12 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
         MainApplication.getApplicationComponent(this).inject(this);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        presenter.setView(this);
+        mainPresenter.setView(this);
         setTitle("");
         seekBar.setOnSeekBarChangeListener(new SeekbarAdapter() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                presenter.setBudgetProgressValue(progress);
+                mainPresenter.setBudgetProgressValue(progress);
             }
         });
     }
@@ -82,11 +86,12 @@ public class MainActivity extends AppCompatActivity implements MainView, DatePic
         Date startDate = calendar.getTime();
         calendar.set(yearEnd, monthOfYearEnd, dayOfMonthEnd);
         Date endDate = calendar.getTime();
-        presenter.setDates(startDate, endDate);
+        mainPresenter.setDates(startDate, endDate);
     }
 
     @OnClick(R.id.main_next_button)
     public void nextStepsClicked() {
+        questionPresenter.reset();
         Intent intent = new Intent(this, QuestionActivity.class);
         startActivity(intent);
     }

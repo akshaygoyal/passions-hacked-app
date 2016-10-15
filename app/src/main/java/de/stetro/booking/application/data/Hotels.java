@@ -4,21 +4,21 @@ import java.util.List;
 
 public class Hotels {
 
-    private List<Hotels> hotels;
+    private List<Hotel> hotels;
 
 
     public Hotels() {
     }
 
-    public Hotels(List<Hotels> hotels) {
+    public Hotels(List<Hotel> hotels) {
         this.hotels = hotels;
     }
 
-    public List<Hotels> getHotels() {
+    public List<Hotel> getHotels() {
         return hotels;
     }
 
-    public void setHotels(List<Hotels> hotels) {
+    public void setHotels(List<Hotel> hotels) {
         this.hotels = hotels;
     }
 }

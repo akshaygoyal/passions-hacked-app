@@ -8,6 +8,8 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import java.util.List;
 
@@ -26,6 +28,9 @@ public class HotelActivity extends AppCompatActivity implements HotelView {
 
     @BindView(R.id.hotel_list)
     public RecyclerView recyclerView;
+
+    @BindView(R.id.hotel_loader)
+    public RelativeLayout loadingLayout;
 
     private HotelAdapter adapter;
 
@@ -51,6 +56,11 @@ public class HotelActivity extends AppCompatActivity implements HotelView {
     public void setState(List<Hotel> hotels, Integer selectedHotel) {
         adapter.setHotels(hotels);
         adapter.setPresenter(hotelPresenter);
+    }
+
+    @Override
+    public void setLoading(boolean isLoading) {
+        loadingLayout.setVisibility(isLoading ? View.VISIBLE : View.GONE);
     }
 
     @Override

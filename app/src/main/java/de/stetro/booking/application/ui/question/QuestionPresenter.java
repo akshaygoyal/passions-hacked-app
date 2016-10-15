@@ -2,11 +2,11 @@ package de.stetro.booking.application.ui.question;
 
 
 import android.content.Context;
+import android.content.Intent;
 
 import java.util.ArrayList;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.config.di.Presenter;
@@ -15,12 +15,13 @@ import de.stetro.booking.application.data.Deck;
 import de.stetro.booking.application.data.DeckType;
 import de.stetro.booking.application.data.State;
 import de.stetro.booking.application.service.Api;
+import de.stetro.booking.application.ui.hotel.HotelActivity;
 import de.stetro.booking.application.ui.main.MainPresenter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class QuestionPresenter implements Presenter<QuestionView> {
+public class QuestionPresenter implements Presenter<QuestionActivity> {
 
     @Inject
     public Api api;
@@ -28,7 +29,7 @@ public class QuestionPresenter implements Presenter<QuestionView> {
     @Inject
     public MainPresenter mainPresenter;
 
-    private QuestionView view;
+    private QuestionActivity view;
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<String> layers = new ArrayList<>();
     private State state = new State();
@@ -50,33 +51,39 @@ public class QuestionPresenter implements Presenter<QuestionView> {
     }
 
     @Override
-    public void setView(QuestionView view) {
+    public void setView(QuestionActivity view) {
         this.view = view;
         loadQuestions();
     }
 
     private void loadQuestions() {
-        state.setDeckType(DeckType.values()[activeLayer]);
+        if (activeLayer >= DeckType.values().length) {
+            Intent intent = new Intent(view, HotelActivity.class);
+            view.startActivity(intent);
+        } else {
+            state.setDeckType(DeckType.values()[activeLayer]);
 
-        isLoading = true;
-        renderLoading();
+            isLoading = true;
+            renderLoading();
 
-        api.getQuestions(state).enqueue(new Callback<Deck>() {
-            @Override
-            public void onResponse(Call<Deck> call, Response<Deck> response) {
-                cards.clear();
-                cards.addAll(response.body().getCards());
-                renderQuestions();
-                isLoading = false;
-                renderLoading();
-                updateLayer();
-            }
+            api.getQuestions(state).enqueue(new Callback<Deck>() {
+                @Override
+                public void onResponse(Call<Deck> call, Response<Deck> response) {
+                    cards.clear();
+                    cards.addAll(response.body().getCards());
+                    renderQuestions();
+                    isLoading = false;
+                    renderLoading();
+                    updateLayer();
+                    state.getInterests().clear();
+                }
 
-            @Override
-            public void onFailure(Call<Deck> call, Throwable t) {
+                @Override
+                public void onFailure(Call<Deck> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
     private void renderLoading() {
@@ -110,5 +117,14 @@ public class QuestionPresenter implements Presenter<QuestionView> {
             activeLayer++;
             loadQuestions();
         }
+    }
+
+    public void reset() {
+        this.activeLayer = 0;
+        this.state.getInterests().clear();
+    }
+
+    public State getState() {
+        return state;
     }
 }

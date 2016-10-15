@@ -6,4 +6,6 @@ import de.stetro.booking.application.data.Hotel;
 
 interface HotelView {
     void setState(List<Hotel> hotels, Integer selectedHotel);
+
+    void setLoading(boolean isLoading);
 }
