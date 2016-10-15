@@ -45,16 +45,17 @@ public class QuestionPresenter implements Presenter<QuestionActivity> {
         state.setStartDate(mainPresenter.getStartDate());
         state.setEndDate(mainPresenter.getEndDate());
 
-        layers.add(DeckType.TRAVEL_OPTIONS.getLabel());
-        layers.add(DeckType.THEMES.getLabel());
-        layers.add(DeckType.ACTIVITIES.getLabel());
-        layers.add(DeckType.LOCATIONS.getLabel());
+        layers.add(0, DeckType.TRAVEL_OPTIONS.getLabel());
+        layers.add(1, DeckType.THEMES.getLabel());
+        layers.add(2, DeckType.ACTIVITIES.getLabel());
+        layers.add(3, DeckType.LOCATIONS.getLabel());
     }
 
     @Override
     public void setView(QuestionActivity view) {
         this.view = view;
         loadQuestions();
+        renderLayer();
     }
 
     private void loadQuestions() {
