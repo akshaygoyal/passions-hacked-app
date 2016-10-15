@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -13,7 +14,6 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import butterknife.BindInt;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.stetro.booking.application.MainApplication;
@@ -47,10 +47,13 @@ public class HotelDetailsActivity extends AppCompatActivity implements HotelView
     public TextView price;
 
     @BindView(R.id.hotel_description_star)
-    public TextView stars;
+    public RatingBar stars;
 
     @BindView(R.id.hotel_description_rating)
     public TextView rating;
+
+    @BindView(R.id.hotel_description_location)
+    public TextView location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +69,13 @@ public class HotelDetailsActivity extends AppCompatActivity implements HotelView
     public void setState(List<Hotel> hotels, Integer selectedIndex) {
         Hotel selectedHotel  = hotels.get(selectedIndex);
         setTitle(selectedHotel.getName());
-        stars.setText(String.valueOf(selectedHotel.getStars())  + " Stars");
+        stars.setRating(selectedHotel.getStars());
+        location.setText(selectedHotel.getLocation());
         rating.setText(String.valueOf(selectedHotel.getRating()));
-        price.setText(String.format(Locale.UK, "%d €", String.valueOf(selectedHotel.getPrice())));
+        price.setText(String.format(Locale.UK, "%d €", selectedHotel.getPrice()));
         address.setText(selectedHotel.getAddress());
-        description.setText(selectedHotel.getDescription());
-        phone.setText(selectedHotel.getPhone());
+        description.setText(selectedHotel.getDesc());
+        phone.setText(selectedHotel.getNumber());
 
         Glide
                 .with(this)

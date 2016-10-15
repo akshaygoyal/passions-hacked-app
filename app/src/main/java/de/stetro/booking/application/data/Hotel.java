@@ -13,9 +13,9 @@ public class Hotel {
     private String thumbnailUrl;
     private String name;
     private String location;
-    private String description;
+    private String desc;
     private String address;
-    private String phone;
+    private String number;
 
     public Hotel(int price, double rating, int stars, List<String> nearByAttractions, List<String> reviews, List<String> imageUrls, String thumbnailUrl, String name, String location, String description, String address, String phone) {
         this.price = price;
@@ -27,9 +27,9 @@ public class Hotel {
         this.thumbnailUrl = thumbnailUrl;
         this.name = name;
         this.location = location;
-        this.description = description;
+        this.desc = description;
         this.address = address;
-        this.phone = phone;
+        this.number = phone;
     }
 
     public int getStars() {
@@ -52,12 +52,12 @@ public class Hotel {
         return rating;
     }
 
-    public String getDescription(){ return this.description; }
+    public String getDesc(){ return this.desc; }
 
     public String getAddress(){ return this.address; }
 
-    public String getPhone(){
-        return this.phone;
+    public String getNumber(){
+        return this.number;
     }
     public void setRating(double rating) {
         this.rating = rating;

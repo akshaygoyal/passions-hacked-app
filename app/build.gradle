@@ -73,6 +73,12 @@ mdicons {
             names 'date_range'
         }
 
+        smallIcons {
+            colors 'primary_color'
+            sizes '18dp'
+            names 'phone', 'location_on', 'local_hotel', 'assignment'
+        }
+
         redIcons {
             colors 'red'
             sizes '24dp'
