@@ -13,6 +13,8 @@ public class HotelPresenter implements Presenter<HotelView> {
 
     public HotelPresenter() {
         hotels.add(new Hotel("Hotel #1"));
+        hotels.add(new Hotel("Hotel #1"));
+        hotels.add(new Hotel("Hotel #1"));
     }
 
     @Override
