@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Application</string>
+    <string name="app_name">TinderBooking</string>
     <string name="budget">Your Budget:</string>
     <string name="travel_period">Travel Period:</string>
     <string name="pick_travel_period">Pick the Dates</string>
