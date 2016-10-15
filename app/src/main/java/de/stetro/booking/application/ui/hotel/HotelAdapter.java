@@ -4,7 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,17 +18,13 @@ import butterknife.ButterKnife;
 import de.stetro.booking.application.R;
 import de.stetro.booking.application.data.Hotel;
 
-public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
+class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
 
     private List<Hotel> hotels = new ArrayList<>();
     private HotelPresenter presenter;
     private HotelActivity hotelActivity;
 
-    public HotelAdapter() {
-
-    }
-
-    public HotelAdapter(HotelPresenter hotelPresenter, HotelActivity hotelActivity) {
+    HotelAdapter(HotelPresenter hotelPresenter, HotelActivity hotelActivity) {
         this.presenter = hotelPresenter;
         this.hotelActivity = hotelActivity;
     }
@@ -47,7 +47,7 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         return hotels.size();
     }
 
-    public void setHotels(List<Hotel> hotels) {
+    void setHotels(List<Hotel> hotels) {
         this.hotels.clear();
         this.hotels.addAll(hotels);
     }
@@ -56,27 +56,48 @@ public class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> 
         this.presenter = presenter;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.hotel_name)
         TextView hotelName;
+
+        @BindView(R.id.hotel_location)
+        TextView hotelLocation;
+
+        @BindView(R.id.hotel_rating)
+        TextView hotelRating;
+
+        @BindView(R.id.hotel_stars)
+        RatingBar hotelStars;
+
+        @BindView(R.id.hotel_image)
+        ImageView hotelImage;
+
         private int position;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);
         }
 
-        public void setData(Hotel hotel, int position) {
+        void setData(Hotel hotel, int position) {
             this.position = position;
             hotelName.setText(hotel.getName());
+            hotelLocation.setText(hotel.getLocation());
+            hotelRating.setText(hotel.getRating());
+            hotelStars.setRating(hotel.getStars());
+            Glide
+                    .with(hotelActivity)
+                    .load(hotel.getImageUrl())
+                    .asBitmap()
+                    .centerCrop()
+                    .into(hotelImage);
         }
 
         @Override
         public void onClick(View view) {
             presenter.selectHotel(position);
-
         }
     }
 }

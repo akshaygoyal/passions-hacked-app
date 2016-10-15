@@ -2,13 +2,15 @@ package de.stetro.booking.application.data;
 
 public class Hotel {
     private String name;
+    private String location;
     private String imageUrl;
     private String description;
     private String rating;
     private Integer stars;
 
-    public Hotel(String name, String imageUrl, String description, String rating, Integer stars) {
+    public Hotel(String name, String location, String imageUrl, String description, String rating, Integer stars) {
         this.name = name;
+        this.location = location;
         this.imageUrl = imageUrl;
         this.description = description;
         this.rating = rating;
@@ -57,5 +59,9 @@ public class Hotel {
 
     public void setStars(Integer stars) {
         this.stars = stars;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }
