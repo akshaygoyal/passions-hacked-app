@@ -1,24 +1,85 @@
 package de.stetro.booking.application.data;
 
+import java.util.List;
+
 public class Hotel {
+
+    private int price;
+    private double rating;
+    private int stars;
+    private List<String> nearByAttractions;
+    private List<String> reviews;
+    private List<String> imageUrls;
+    private String thumbnailUrl;
     private String name;
     private String location;
-    private String imageUrl;
-    private String description;
-    private String rating;
-    private Integer stars;
 
-    public Hotel(String name, String location, String imageUrl, String description, String rating, Integer stars) {
+    public Hotel(int price, double rating, int stars, List<String> nearByAttractions, List<String> reviews, List<String> imageUrls, String thumbnailUrl, String name, String location) {
+        this.price = price;
+        this.rating = rating;
+        this.stars = stars;
+        this.nearByAttractions = nearByAttractions;
+        this.reviews = reviews;
+        this.imageUrls = imageUrls;
+        this.thumbnailUrl = thumbnailUrl;
         this.name = name;
         this.location = location;
-        this.imageUrl = imageUrl;
-        this.description = description;
-        this.rating = rating;
+    }
+
+    public int getStars() {
+        return stars;
+    }
+
+    public void setStars(int stars) {
         this.stars = stars;
     }
 
-    public Hotel(String name) {
-        this.name = name;
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public List<String> getNearByAttractions() {
+        return nearByAttractions;
+    }
+
+    public void setNearByAttractions(List<String> nearByAttractions) {
+        this.nearByAttractions = nearByAttractions;
+    }
+
+    public List<String> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<String> reviews) {
+        this.reviews = reviews;
+    }
+
+    public List<String> getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
+    }
+
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public String getName() {
@@ -29,39 +90,11 @@ public class Hotel {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public void setRating(String rating) {
-        this.rating = rating;
-    }
-
-    public Integer getStars() {
-        return stars;
-    }
-
-    public void setStars(Integer stars) {
-        this.stars = stars;
-    }
-
     public String getLocation() {
         return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

@@ -14,7 +14,6 @@ import android.widget.RelativeLayout;
 import com.anton46.stepsview.StepsView;
 import com.daprlabs.cardstack.SwipeDeck;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,7 +23,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.R;
-import de.stetro.booking.application.data.Question;
+import de.stetro.booking.application.data.Card;
 import de.stetro.booking.application.ui.hotel.HotelActivity;
 
 
@@ -56,7 +55,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionView 
 
         setTitle(R.string.questions);
 
-        adapter = new QuestionCardAdapter(new ArrayList<Question>(), this);
+        adapter = new QuestionCardAdapter(this);
 
         swipeDeck.setAdapter(adapter);
         swipeDeck.setEventCallback(new SwipeDeckAdapter() {
@@ -105,8 +104,8 @@ public class QuestionActivity extends AppCompatActivity implements QuestionView 
     }
 
     @Override
-    public void setQuestions(List<Question> questions, Integer activeCard) {
-        adapter.setQuestions(questions);
+    public void setQuestions(List<Card> cards, Integer activeCard) {
+        adapter.setQuestions(cards);
         swipeDeck.setSelection(activeCard);
     }
 

@@ -10,28 +10,28 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.stetro.booking.application.R;
-import de.stetro.booking.application.data.Question;
+import de.stetro.booking.application.data.Card;
 
 class QuestionCardAdapter extends BaseAdapter {
-    private List<Question> questions;
+    private List<Card> cards = new ArrayList<>();
     private Context context;
 
-    QuestionCardAdapter(List<Question> questions, Context context) {
-        this.questions = questions;
+    QuestionCardAdapter(Context context) {
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return questions.size();
+        return cards.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return questions.get(i);
+        return cards.get(i);
     }
 
     @Override
@@ -45,10 +45,10 @@ class QuestionCardAdapter extends BaseAdapter {
         if (v == null) {
             v = LayoutInflater.from(context).inflate(R.layout.question_card, viewGroup, false);
         }
-        ((TextView) v.findViewById(R.id.question_title)).setText(questions.get(i).getTitle());
+        ((TextView) v.findViewById(R.id.question_title)).setText(cards.get(i).getDesc());
         Glide
                 .with(context)
-                .load(questions.get(i).getUrl())
+                .load(cards.get(i).getImageUrl())
                 .asBitmap()
                 .centerCrop()
                 .into(((ImageView) v.findViewById(R.id.question_image)));
@@ -56,8 +56,8 @@ class QuestionCardAdapter extends BaseAdapter {
     }
 
 
-    void setQuestions(List<Question> questions) {
-        this.questions = questions;
+    void setQuestions(List<Card> cards) {
+        this.cards = cards;
         this.notifyDataSetInvalidated();
     }
 }

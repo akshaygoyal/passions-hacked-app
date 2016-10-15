@@ -1,14 +1,14 @@
 package de.stetro.booking.application.config.di;
 
 import dagger.Component;
-import de.stetro.booking.application.service.HelloWorldService;
+import de.stetro.booking.application.service.Api;
 import de.stetro.booking.application.ui.hotel.HotelActivity;
 import de.stetro.booking.application.ui.hotel.HotelPresenter;
 import de.stetro.booking.application.ui.main.MainActivity;
 import de.stetro.booking.application.ui.main.MainPresenter;
-import de.stetro.booking.application.ui.main.MainView;
 import de.stetro.booking.application.ui.question.QuestionActivity;
 import de.stetro.booking.application.ui.question.QuestionPresenter;
+import retrofit2.Retrofit;
 
 @Component(modules = PresenterModule.class)
 public interface ApplicationComponent {
@@ -29,5 +29,8 @@ public interface ApplicationComponent {
 
     QuestionPresenter getQuestionPresenter();
 
-    HelloWorldService getHelloWorldService();
+    Api getApi();
+
+    Retrofit getRetrofit();
+
 }

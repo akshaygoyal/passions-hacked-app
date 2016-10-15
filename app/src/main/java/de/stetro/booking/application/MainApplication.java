@@ -20,13 +20,13 @@ public class MainApplication extends Application {
         MainApplication mainApplication = (MainApplication) context.getApplicationContext();
         if (mainApplication.component == null) {
             mainApplication.component = DaggerApplicationComponent.builder()
-                    .presenterModule(getPresenterModule())
+                    .presenterModule(getPresenterModule(context))
                     .build();
         }
         return mainApplication.component;
     }
 
-    public static PresenterModule getPresenterModule() {
-        return new PresenterModule();
+    public static PresenterModule getPresenterModule(Context context) {
+        return new PresenterModule(context);
     }
 }

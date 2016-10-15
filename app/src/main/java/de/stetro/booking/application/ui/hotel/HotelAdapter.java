@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,11 +86,11 @@ class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
             this.position = position;
             hotelName.setText(hotel.getName());
             hotelLocation.setText(hotel.getLocation());
-            hotelRating.setText(hotel.getRating());
+            hotelRating.setText(String.format(Locale.UK, "%.1f", hotel.getRating()));
             hotelStars.setRating(hotel.getStars());
             Glide
                     .with(hotelActivity)
-                    .load(hotel.getImageUrl())
+                    .load(hotel.getThumbnailUrl())
                     .asBitmap()
                     .centerCrop()
                     .into(hotelImage);

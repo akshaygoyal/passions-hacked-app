@@ -1,8 +1,11 @@
 package de.stetro.booking.application.ui.main;
 
 
+import android.content.Context;
+
 import java.util.Date;
 
+import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.config.di.Presenter;
 
 public class MainPresenter implements Presenter<MainView> {
@@ -11,6 +14,10 @@ public class MainPresenter implements Presenter<MainView> {
     private Integer budget = 0;
     private Date startDate;
     private Date endDate;
+
+    public MainPresenter(Context context) {
+        MainApplication.getApplicationComponent(context).inject(this);
+    }
 
     @Override
     public void setView(MainView view) {

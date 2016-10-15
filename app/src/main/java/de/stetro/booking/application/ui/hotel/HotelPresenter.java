@@ -1,8 +1,11 @@
 package de.stetro.booking.application.ui.hotel;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.config.di.Presenter;
 import de.stetro.booking.application.data.Hotel;
 
@@ -11,10 +14,10 @@ public class HotelPresenter implements Presenter<HotelView> {
     private List<Hotel> hotels = new ArrayList<>();
     private Integer selectedHotel = null;
 
-    public HotelPresenter() {
-        hotels.add(new Hotel("Casa 400", "Amsterdam", "http://www.archello.com/sites/default/files/imagecache/header_detail_large/story/media/Casa%2001.jpg", "description", "8,4", 3));
-        hotels.add(new Hotel("Casa 400", "Amsterdam", "http://www.archello.com/sites/default/files/imagecache/header_detail_large/story/media/Casa%2001.jpg", "description", "8,4", 3));
-        hotels.add(new Hotel("Casa 400", "Amsterdam", "http://www.archello.com/sites/default/files/imagecache/header_detail_large/story/media/Casa%2001.jpg", "description", "8,4", 3));
+    public HotelPresenter(Context context) {
+        MainApplication.getApplicationComponent(context).inject(this);
+
+        hotels.add(new Hotel(123, 8.4, 3, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), "https://media-cdn.tripadvisor.com/media/photo-s/08/37/ec/d7/exterior.jpg", "Casa 400", "Amsterdam"));
     }
 
     @Override
