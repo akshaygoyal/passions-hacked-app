@@ -22,7 +22,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HotelPresenter implements Presenter<HotelActivity> {
+public class HotelPresenter implements Presenter<HotelView> {
 
     @Inject
     public QuestionPresenter questionPresenter;
@@ -30,7 +30,7 @@ public class HotelPresenter implements Presenter<HotelActivity> {
     @Inject
     public Api api;
 
-    private HotelActivity view;
+    private HotelView view;
     private List<Hotel> hotels = new ArrayList<>();
     private Integer selectedHotel = null;
     private boolean isLoading = false;
@@ -54,7 +54,7 @@ public class HotelPresenter implements Presenter<HotelActivity> {
 
             @Override
             public void onFailure(Call<Hotels> call, Throwable t) {
-                Toast.makeText(view, "Could not load Hotels", Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), "Could not load Hotels", Toast.LENGTH_LONG).show();
                 isLoading = false;
                 renderLoading();
             }
@@ -66,7 +66,7 @@ public class HotelPresenter implements Presenter<HotelActivity> {
     }
 
     @Override
-    public void setView(HotelActivity view) {
+    public void setView(HotelView view) {
         this.view = view;
         loadHotels();
 

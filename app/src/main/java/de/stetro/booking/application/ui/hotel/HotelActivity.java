@@ -1,6 +1,7 @@
 package de.stetro.booking.application.ui.hotel;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -64,6 +65,11 @@ public class HotelActivity extends AppCompatActivity implements HotelView {
     @Override
     public void setLoading(boolean isLoading) {
         loadingLayout.setVisibility(isLoading ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 
     @Override

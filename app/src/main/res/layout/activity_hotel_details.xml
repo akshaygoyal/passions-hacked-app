@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3-star hotel"
-                android:textSize="30sp">
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium">
             </TextView>
             <TextView
                 android:id="@+id/hotel_description_rating"
@@ -35,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:text="Rating"
                 android:layout_marginTop="10dp"
-                android:textSize="30sp">
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium">
             </TextView>
         </LinearLayout>
         <LinearLayout

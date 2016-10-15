@@ -1,5 +1,6 @@
 package de.stetro.booking.application.ui.hoteldetails;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -64,12 +66,28 @@ public class HotelDetailsActivity extends AppCompatActivity implements HotelView
     public void setState(List<Hotel> hotels, Integer selectedIndex) {
         Hotel selectedHotel  = hotels.get(selectedIndex);
         setTitle(selectedHotel.getName());
-        
+        stars.setText(String.valueOf(selectedHotel.getStars())  + " Stars");
+        rating.setText(String.valueOf(selectedHotel.getRating()));
+        price.setText(String.format(Locale.UK, "%d €", String.valueOf(selectedHotel.getPrice())));
+        address.setText(selectedHotel.getAddress());
+        description.setText(selectedHotel.getDescription());
+        phone.setText(selectedHotel.getPhone());
+
         Glide
                 .with(this)
                 .load(selectedHotel.getThumbnailUrl())
                 .asBitmap()
                 .centerCrop()
                 .into(hotelImage);
+    }
+
+    @Override
+    public void setLoading(boolean isLoading) {
+
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 }
