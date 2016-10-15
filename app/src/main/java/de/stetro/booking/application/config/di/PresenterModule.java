@@ -13,13 +13,17 @@ import de.stetro.booking.application.service.Api;
 import de.stetro.booking.application.ui.hotel.HotelPresenter;
 import de.stetro.booking.application.ui.main.MainPresenter;
 import de.stetro.booking.application.ui.question.QuestionPresenter;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-@Singleton
 public class PresenterModule {
 
+    private static MainPresenter mainPresenter;
+    private static QuestionPresenter questionPresenter;
+    private static HotelPresenter hotelPresenter;
     private Context context;
 
     public PresenterModule(Context context) {
@@ -28,27 +32,39 @@ public class PresenterModule {
 
     @Provides
     static MainPresenter provideMainPresenter(Context context) {
-        return new MainPresenter(context);
+        if (mainPresenter == null) {
+            mainPresenter = new MainPresenter(context);
+        }
+        return mainPresenter;
     }
 
     @Provides
     static QuestionPresenter provideQuestionPresenter(Context context) {
-        return new QuestionPresenter(context);
+        if (questionPresenter == null) {
+            questionPresenter = new QuestionPresenter(context);
+        }
+        return questionPresenter;
     }
 
     @Provides
     static HotelPresenter provideHotelPresenter(Context context) {
-        return new HotelPresenter(context);
+        if (hotelPresenter == null) {
+            hotelPresenter = new HotelPresenter(context);
+        }
+        return hotelPresenter;
     }
 
     @Provides
     static Retrofit provideRetrofit() {
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd")
                 .create();
-
         return new Retrofit.Builder()
                 .baseUrl("https://passions-hacked.herokuapp.com/")
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }

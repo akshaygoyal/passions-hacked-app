@@ -97,10 +97,14 @@ public class QuestionActivity extends AppCompatActivity implements QuestionView 
     }
 
     @Override
-    public void setLayer(List<String> layers, Integer currentLayer) {
+    public void setLayer(List<String> layers) {
         stepsView.setLabels(layers.toArray(new String[layers.size()]))
-                .setCompletedPosition(currentLayer)
                 .drawView();
+    }
+
+    @Override
+    public void setActiveLayer(Integer currentLayer) {
+        stepsView.setCompletedPosition(currentLayer).drawView();
     }
 
     @Override

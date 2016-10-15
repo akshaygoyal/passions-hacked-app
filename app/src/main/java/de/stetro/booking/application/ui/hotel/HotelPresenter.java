@@ -5,6 +5,8 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Singleton;
+
 import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.config.di.Presenter;
 import de.stetro.booking.application.data.Hotel;

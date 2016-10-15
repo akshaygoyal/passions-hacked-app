@@ -5,6 +5,8 @@ import android.content.Context;
 
 import java.util.Date;
 
+import javax.inject.Singleton;
+
 import de.stetro.booking.application.MainApplication;
 import de.stetro.booking.application.config.di.Presenter;
 
@@ -40,4 +42,15 @@ public class MainPresenter implements Presenter<MainView> {
         render();
     }
 
+    public Integer getBudget() {
+        return budget;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
 }

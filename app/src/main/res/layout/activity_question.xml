@@ -11,6 +11,8 @@
     <com.anton46.stepsview.StepsView
         android:id="@+id/questions_step_view"
         android:layout_width="match_parent"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         android:layout_height="wrap_content" />
 
     <com.daprlabs.cardstack.SwipeFrameLayout

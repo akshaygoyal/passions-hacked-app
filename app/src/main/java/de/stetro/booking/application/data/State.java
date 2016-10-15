@@ -1,5 +1,6 @@
 package de.stetro.booking.application.data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public class State {
     private Date endDate;
     private double budget;
     private DeckType deckType;
-    private List<String> interests;
+    private List<String> interests = new ArrayList<>();
 
     public State(Date startDate, Date endDate, double budget, DeckType deckType, List<String> interests) {
         this.startDate = startDate;
