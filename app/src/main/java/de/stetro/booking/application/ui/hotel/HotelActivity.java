@@ -56,6 +56,7 @@ public class HotelActivity extends AppCompatActivity implements HotelView {
     public void setState(List<Hotel> hotels, Integer selectedHotel) {
         adapter.setHotels(hotels);
         adapter.setPresenter(hotelPresenter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

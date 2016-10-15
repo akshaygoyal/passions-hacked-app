@@ -1,6 +1,7 @@
 package de.stetro.booking.application.ui.hotel;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +18,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HotelPresenter implements Presenter<HotelView> {
+public class HotelPresenter implements Presenter<HotelActivity> {
+
     @Inject
     public QuestionPresenter questionPresenter;
+
     @Inject
     public Api api;
 
-    private HotelView view;
+    private HotelActivity view;
     private List<Hotel> hotels = new ArrayList<>();
     private Integer selectedHotel = null;
     private boolean isLoading = false;
@@ -47,7 +50,9 @@ public class HotelPresenter implements Presenter<HotelView> {
 
             @Override
             public void onFailure(Call<Hotels> call, Throwable t) {
-
+                Toast.makeText(view, "Could not load Hotels", Toast.LENGTH_LONG).show();
+                isLoading = false;
+                renderLoading();
             }
         });
     }
@@ -57,7 +62,7 @@ public class HotelPresenter implements Presenter<HotelView> {
     }
 
     @Override
-    public void setView(HotelView view) {
+    public void setView(HotelActivity view) {
         this.view = view;
         loadHotels();
 

@@ -3,6 +3,7 @@ package de.stetro.booking.application.ui.question;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -80,7 +81,9 @@ public class QuestionPresenter implements Presenter<QuestionActivity> {
 
                 @Override
                 public void onFailure(Call<Deck> call, Throwable t) {
-
+                    Toast.makeText(view, "Could not load Cards", Toast.LENGTH_LONG).show();
+                    isLoading = false;
+                    renderLoading();
                 }
             });
         }
