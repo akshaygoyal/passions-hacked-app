@@ -3,7 +3,7 @@ package de.stetro.booking.application.ui.question;
 import com.daprlabs.cardstack.SwipeDeck;
 
 
-public abstract class SwipeDeckAdapter implements SwipeDeck.SwipeEventCallback {
+abstract class SwipeDeckAdapter implements SwipeDeck.SwipeEventCallback {
 
 
     @Override

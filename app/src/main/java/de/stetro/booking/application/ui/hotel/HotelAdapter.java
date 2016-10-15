@@ -52,7 +52,7 @@ class HotelAdapter extends RecyclerView.Adapter<HotelAdapter.ViewHolder> {
         this.hotels.addAll(hotels);
     }
 
-    public void setPresenter(HotelPresenter presenter) {
+    void setPresenter(HotelPresenter presenter) {
         this.presenter = presenter;
     }
 

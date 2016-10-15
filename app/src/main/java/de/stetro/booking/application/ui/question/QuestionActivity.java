@@ -112,6 +112,6 @@ public class QuestionActivity extends AppCompatActivity implements QuestionView 
 
     @Override
     public void setLoading(boolean isLoading) {
-        loaderView.setVerticalGravity(isLoading ? View.VISIBLE : View.INVISIBLE);
+        loaderView.setVisibility(isLoading ? View.VISIBLE : View.GONE);
     }
 }

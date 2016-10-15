@@ -4,6 +4,6 @@ import java.util.List;
 
 import de.stetro.booking.application.data.Hotel;
 
-public interface HotelView {
+interface HotelView {
     void setState(List<Hotel> hotels, Integer selectedHotel);
 }

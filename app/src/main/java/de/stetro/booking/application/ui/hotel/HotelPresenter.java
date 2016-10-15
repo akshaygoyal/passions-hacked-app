@@ -27,7 +27,7 @@ public class HotelPresenter implements Presenter<HotelView> {
         view.setState(hotels, selectedHotel);
     }
 
-    public void selectHotel(int position) {
+    void selectHotel(int position) {
         this.selectedHotel = position;
     }
 }

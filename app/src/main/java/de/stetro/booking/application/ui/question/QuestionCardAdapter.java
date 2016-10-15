@@ -15,11 +15,11 @@ import java.util.List;
 import de.stetro.booking.application.R;
 import de.stetro.booking.application.data.Question;
 
-public class QuestionCardAdapter extends BaseAdapter {
+class QuestionCardAdapter extends BaseAdapter {
     private List<Question> questions;
     private Context context;
 
-    public QuestionCardAdapter(List<Question> questions, Context context) {
+    QuestionCardAdapter(List<Question> questions, Context context) {
         this.questions = questions;
         this.context = context;
     }
@@ -56,7 +56,7 @@ public class QuestionCardAdapter extends BaseAdapter {
     }
 
 
-    public void setQuestions(List<Question> questions) {
+    void setQuestions(List<Question> questions) {
         this.questions = questions;
         this.notifyDataSetInvalidated();
     }
