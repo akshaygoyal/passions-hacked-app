@@ -5,4 +5,9 @@
     <string name="pick_travel_period">Pick the Dates</string>
     <string name="questions">Questions</string>
     <string name="ZeroEuros">0 €</string>
+    <string name="next_step">Start Questions</string>
+    <string name="budget_per_day">Budget per day:</string>
+    <string name="_10000">10000 €</string>
+    <string name="_100">100 €</string>
+    <string name="loading">Loading ...</string>
 </resources>

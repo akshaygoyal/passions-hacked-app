@@ -2,10 +2,12 @@ package de.stetro.booking.application.ui.hotel;
 
 
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import java.util.List;
 
@@ -34,6 +36,10 @@ public class HotelActivity extends AppCompatActivity implements HotelView {
         setContentView(R.layout.activity_hotel);
         setTitle("Hotel Suggestions");
         ButterKnife.bind(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         adapter = new HotelAdapter(hotelPresenter, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,5 +50,16 @@ public class HotelActivity extends AppCompatActivity implements HotelView {
     @Override
     public void setState(List<Hotel> hotels, Integer selectedHotel) {
         adapter.setHotels(hotels);
+        adapter.setPresenter(hotelPresenter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

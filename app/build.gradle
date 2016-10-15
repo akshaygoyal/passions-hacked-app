@@ -89,7 +89,7 @@ mdicons {
         whiteIcons {
             colors 'white'
             sizes '24dp'
-            names 'skip_next'
+            names 'skip_next', 'send'
         }
 
     }

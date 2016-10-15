@@ -4,6 +4,10 @@ import java.util.List;
 
 import de.stetro.booking.application.data.Question;
 
-public interface QuestionView {
-    void setState(List<Question> questions, List<String> layers, Integer currentLayer, Integer activeCard);
+interface QuestionView {
+    void setLayer(List<String> layers, Integer currentLayer);
+
+    void setQuestions(List<Question> questions, Integer activeCard);
+
+    void setLoading(boolean isLoading);
 }

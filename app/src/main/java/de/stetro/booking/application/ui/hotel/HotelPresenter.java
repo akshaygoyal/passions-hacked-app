@@ -12,7 +12,9 @@ public class HotelPresenter implements Presenter<HotelView> {
     private Integer selectedHotel = null;
 
     public HotelPresenter() {
-        hotels.add(new Hotel("Hotel #1"));
+        hotels.add(new Hotel("Casa 400", "Amsterdam", "http://www.archello.com/sites/default/files/imagecache/header_detail_large/story/media/Casa%2001.jpg", "description", "8,4", 3));
+        hotels.add(new Hotel("Casa 400", "Amsterdam", "http://www.archello.com/sites/default/files/imagecache/header_detail_large/story/media/Casa%2001.jpg", "description", "8,4", 3));
+        hotels.add(new Hotel("Casa 400", "Amsterdam", "http://www.archello.com/sites/default/files/imagecache/header_detail_large/story/media/Casa%2001.jpg", "description", "8,4", 3));
     }
 
     @Override
@@ -25,7 +27,7 @@ public class HotelPresenter implements Presenter<HotelView> {
         view.setState(hotels, selectedHotel);
     }
 
-    public void selectHotel(int position) {
+    void selectHotel(int position) {
         this.selectedHotel = position;
     }
 }
